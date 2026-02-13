@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentines Day!</title>
+
+    <!--ICON-->
+        <link rel="icon" href="assets/flower.ico" type="image/x-icon">
+
+    <!-- Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Gaegu:wght@300&display=swap" rel="stylesheet">
+    </head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            background-image: url('https://i.pinimg.com/736x/51/b7/9f/51b79f5351d27fef695a65fdace333fb.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center center;
+            background-size: cover;
+            font-family: 'Gaegu', cursive;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }   
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .glass{
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        /* From https://css.glass */
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(4.1px);
+            -webkit-backdrop-filter: blur(4.1px);
+            border: 1px solid rgba(255, 255, 255, 0.66);
+        }
+        .heading1{
+            color: #4682A9; /* fill color */
+            -webkit-text-fill-color: #4682A9; /* fill color for WebKit browsers */
+            font-size: 50px;
+            text-align: center;
+            margin-top: 20px;
+            font-family: 'Cherry Bomb One', cursive;
+            /* Outline in color #F6F4EB */
+            -webkit-text-stroke: 2px #F6F4EB;
+            /* Fallback outline using multiple text-shadow offsets for broader browser support */
+            text-shadow:
+                2px 0 #F6F4EB,
+                -2px 0 #F6F4EB,
+                0 2px #F6F4EB,
+                0 -2px #F6F4EB,
+                1px 1px #F6F4EB,
+                -1px -1px #F6F4EB,
+                1px -1px #F6F4EB,
+                -1px 1px #F6F4EB,
+                3px 3px 6px rgba(0,0,0,0.3);
+            animation: floating 3s ease-in-out infinite;
+        }
+        .music-player {
+            width: 350px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .album-art {
+            width: 200px;
+            height: 200px;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .song-info {
+            text-align: center;
+            color: #4682A9;
+        }
+
+        .song-title {
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Cherry Bomb One', cursive;
+            margin-bottom: 5px;
+        }
+
+        .song-artist {
+            font-size: 14px;
+            color: rgba(70, 130, 169, 0.7);
+            font-family: 'Gaegu', cursive;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .control-btn {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(70, 130, 169, 0.3);
+            color: #4682A9;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-btn:hover {
+            background: rgba(70, 130, 169, 0.5);
+            transform: scale(1.1);
+        }
+
+        .play-btn {
+            width: 55px;
+            height: 55px;
+            font-size: 24px;
+            background: rgba(70, 130, 169, 0.5);
+        }
+
+        .play-btn:hover {
+            background: rgba(70, 130, 169, 0.7);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: rgba(70, 130, 169, 0.2);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .progress-bar::-webkit-slider-thumb {
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4682A9;
+            cursor: pointer;
+        }
+
+        .progress-bar::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4682A9;
+            cursor: pointer;
+            border: none;
+        }
+
+        .time-info {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            color: #4682A9;
+            font-size: 12px;
+        }
+
+        .upload-section {
+            width: 350px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .upload-section h3 {
+            color: #4682A9;
+            font-family: 'Cherry Bomb One', cursive;
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .upload-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .upload-group label {
+            color: #4682A9;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .upload-group input {
+            padding: 10px;
+            border: 1px solid rgba(70, 130, 169, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #4682A9;
+            font-family: 'Gaegu', cursive;
+            cursor: pointer;
+        }
+
+        .upload-group input::file-selector-button {
+            background: rgba(70, 130, 169, 0.5);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-group input::file-selector-button:hover {
+            background: rgba(70, 130, 169, 0.7);
+        }
+
+        .upload-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(70, 130, 169, 0.5);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Cherry Bomb One', cursive;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            background: rgba(70, 130, 169, 0.7);
+            transform: scale(1.05);
+        }
+
+        .playlist-display {
+            width: 350px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .playlist-display h3 {
+            color: #4682A9;
+            font-family: 'Cherry Bomb One', cursive;
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .playlist-item {
+            color: #4682A9;
+            padding: 8px;
+            margin: 5px 0;
+            background: rgba(70, 130, 169, 0.2);
+            border-radius: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .playlist-item:hover {
+            background: rgba(70, 130, 169, 0.4);
+        }
+
+        .remove-btn {
+            background: rgba(255, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 3px 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .remove-btn:hover {
+            background: rgba(255, 0, 0, 0.7);
+        }
+    </style>
+<body class="body">
+    <h1 class="heading1">Happy Birthday Day Yannie!</h1>
+    
+    <div class="music-player">
+        <img src="assets/flower.png" alt="Album Art" class="album-art" id="album-art">
+        
+        <div class="song-info">
+            <div class="song-title">Blue(instrumental)</div>
+            <div class="song-artist">yung kai</div>
+        </div>
+
+        <input type="range" class="progress-bar" min="0" max="100" value="0">
+
+        <div class="time-info">
+            <span id="current-time">0:00</span>
+            <span id="duration">3:45</span>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn" onclick="previousTrack()">⏮</button>
+            <button class="control-btn play-btn" id="play-btn" onclick="togglePlay()">▶</button>
+            <button class="control-btn" onclick="nextTrack()">⏭</button>
+        </div>
+    </div>
+
+    <div class="upload-section">
+        <h3>Add Your Song 🎵</h3>
+        <div class="upload-group">
+            <label for="song-title-input">Song Title:</label>
+            <input type="text" id="song-title-input" placeholder="Enter song title">
+        </div>
+        <div class="upload-group">
+            <label for="song-artist-input">Artist Name:</label>
+            <input type="text" id="song-artist-input" placeholder="Enter artist name">
+        </div>
+        <div class="upload-group">
+            <label for="song-file-input">Upload Song:</label>
+            <input type="file" id="song-file-input" accept="audio/*">
+        </div>
+        <div class="upload-group">
+            <label for="image-file-input">Upload Album Art:</label>
+            <input type="file" id="image-file-input" accept="image/*">
+        </div>
+        <button class="upload-btn" onclick="addCustomSong()">Add to Playlist</button>
+    </div>
+
+    <div class="playlist-display">
+        <h3>Current Playlist</h3>
+        <div id="playlist-list"></div>
+    </div>
+
+    <audio id="audio-player">
+        <source src="assets/songs/blue (instrumental).mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const audioPlayer = document.getElementById('audio-player');
+        const playBtn = document.getElementById('play-btn');
+        const progressBar = document.querySelector('.progress-bar');
+        const currentTimeEl = document.getElementById('current-time');
+        const durationEl = document.getElementById('duration');
+        const songTitleEl = document.querySelector('.song-title');
+        const songArtistEl = document.querySelector('.song-artist');
+        const albumArtEl = document.getElementById('album-art');
+        const playlistListEl = document.getElementById('playlist-list');
+        
+        let isPlaying = false;
+        let currentTrackIndex = 0;
+
+        const playlist = [
+            { title: 'Blue(instrumental)', artist: 'yung kai', path: 'assets/songs/blue (instrumental).mp3', image: 'assets/imgs/download (4).jpg' },
+            { title: 'Love Song', artist: 'Taylor Swift', path: 'assets/songs/Love Story.mp3', image: 'assets/imgs/download (2).jpg' },
+            { title: 'Cupid', artist: 'FIFTY FIFTY', path: 'assets/songs/FIFTY FIFTY - Cupid (Twin Version) (Lyrics).mp3', image: 'assets/imgs/Bunyyyyy.jpg' },
+            { title: 'Valentine', artist: 'Jessie Ware & Sampha', path: 'assets/songs/Jessie Ware & Sampha - Valentine.mp3', image: 'assets/imgs/cutee.jpg' }
+        ];
+
+        // Initialize IndexedDB
+        let db;
+        const IndexedDBInit = () => {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open('MusicPlayerDB', 1);
+                
+                request.onerror = () => reject(request.error);
+                request.onsuccess = () => {
+                    db = request.result;
+                    resolve();
+                };
+                
+                request.onupgradeneeded = (e) => {
+                    db = e.target.result;
+                    if (!db.objectStoreNames.contains('uploadedSongs')) {
+                        db.createObjectStore('uploadedSongs', { keyPath: 'id', autoIncrement: true });
+                    }
+                };
+            });
+        };
+
+        // Save song to IndexedDB
+        const saveSongToIndexedDB = (song) => {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(['uploadedSongs'], 'readwrite');
+                const store = transaction.objectStore('uploadedSongs');
+                const request = store.add(song);
+                
+                request.onerror = () => reject(request.error);
+                request.onsuccess = () => resolve();
+            });
+        };
+
+        // Load songs from IndexedDB
+        const loadSongsFromIndexedDB = () => {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(['uploadedSongs'], 'readonly');
+                const store = transaction.objectStore('uploadedSongs');
+                const request = store.getAll();
+                
+                request.onerror = () => reject(request.error);
+                request.onsuccess = () => resolve(request.result);
+            });
+        };
+
+        // Delete song from IndexedDB
+        const deleteSongFromIndexedDB = (id) => {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(['uploadedSongs'], 'readwrite');
+                const store = transaction.objectStore('uploadedSongs');
+                const request = store.delete(id);
+                
+                request.onerror = () => reject(request.error);
+                request.onsuccess = () => resolve();
+            });
+        };
+
+        function updatePlaylistDisplay() {
+            playlistListEl.innerHTML = '';
+            playlist.forEach((song, index) => {
+                const item = document.createElement('div');
+                item.className = 'playlist-item';
+                const removeBtn = song.id ? `<button class="remove-btn" onclick="removeFromPlaylist(${index}, ${song.id})">✕</button>` : `<button class="remove-btn" onclick="removeFromPlaylist(${index})">✕</button>`;
+                item.innerHTML = `
+                    <span onclick="playSongAtIndex(${index})">${song.title} - ${song.artist}</span>
+                    ${removeBtn}
+                `;
+                playlistListEl.appendChild(item);
+            });
+        }
+
+        function addCustomSong() {
+            const titleInput = document.getElementById('song-title-input');
+            const artistInput = document.getElementById('song-artist-input');
+            const songFileInput = document.getElementById('song-file-input');
+            const imageFileInput = document.getElementById('image-file-input');
+
+            if (!titleInput.value || !artistInput.value) {
+                alert('Please enter song title and artist name');
+                return;
+            }
+
+            if (!songFileInput.files[0]) {
+                alert('Please upload a song file');
+                return;
+            }
+
+            const songFile = songFileInput.files[0];
+            const imageFile = imageFileInput.files[0];
+
+            // Read files as base64
+            const songReader = new FileReader();
+            const imageReader = new FileReader();
+
+            let songData = null;
+            let imageData = null;
+            let filesRead = 0;
+
+            songReader.onload = () => {
+                songData = songReader.result;
+                filesRead++;
+                if (filesRead === (imageFile ? 2 : 1)) {
+                    saveNewSong();
+                }
+            };
+
+            songReader.readAsDataURL(songFile);
+
+            if (imageFile) {
+                imageReader.onload = () => {
+                    imageData = imageReader.result;
+                    filesRead++;
+                    if (filesRead === 2) {
+                        saveNewSong();
+                    }
+                };
+                imageReader.readAsDataURL(imageFile);
+            } else {
+                imageData = 'assets/flower.png';
+                filesRead++;
+                if (filesRead === 1) {
+                    saveNewSong();
+                }
+            }
+
+            async function saveNewSong() {
+                const newSong = {
+                    title: titleInput.value,
+                    artist: artistInput.value,
+                    path: songData,
+                    image: imageData,
+                    isCustom: true
+                };
+
+                try {
+                    await saveSongToIndexedDB(newSong);
+                    playlist.push(newSong);
+                    
+                    // Clear inputs
+                    titleInput.value = '';
+                    artistInput.value = '';
+                    songFileInput.value = '';
+                    imageFileInput.value = '';
+
+                    // Update display
+                    updatePlaylistDisplay();
+                    alert('Song added to playlist! ✓ It will be saved even after refresh.');
+                } catch (error) {
+                    alert('Error saving song. Please try again.');
+                    console.error(error);
+                }
+            }
+        }
+
+        function removeFromPlaylist(index, dbId) {
+            if (index === currentTrackIndex && isPlaying) {
+                audioPlayer.pause();
+                playBtn.textContent = '▶';
+                isPlaying = false;
+            }
+
+            // If it's a custom song, delete from IndexedDB
+            if (dbId) {
+                deleteSongFromIndexedDB(dbId).catch(err => console.error(err));
+            }
+
+            playlist.splice(index, 1);
+            updatePlaylistDisplay();
+
+            if (currentTrackIndex >= playlist.length) {
+                currentTrackIndex = 0;
+            }
+            loadTrack(currentTrackIndex);
+        }
+
+        function playSongAtIndex(index) {
+            loadTrack(index);
+            audioPlayer.play();
+            playBtn.textContent = '⏸';
+            isPlaying = true;
+        }
+
+        function loadTrack(index) {
+            currentTrackIndex = index;
+            const track = playlist[index];
+            audioPlayer.src = track.path;
+            songTitleEl.textContent = track.title;
+            songArtistEl.textContent = track.artist;
+            albumArtEl.src = track.image;
+            progressBar.value = 0;
+            currentTimeEl.textContent = '0:00';
+            durationEl.textContent = '0:00';
+        }
+
+        function togglePlay() {
+            if (isPlaying) {
+                audioPlayer.pause();
+                playBtn.textContent = '▶';
+                isPlaying = false;
+            } else {
+                audioPlayer.play();
+                playBtn.textContent = '⏸';
+                isPlaying = true;
+            }
+        }
+
+        function previousTrack() {
+            currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+            loadTrack(currentTrackIndex);
+            if (isPlaying) audioPlayer.play();
+        }
+
+        function nextTrack() {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            loadTrack(currentTrackIndex);
+            if (isPlaying) audioPlayer.play();
+        }
+
+        audioPlayer.addEventListener('timeupdate', () => {
+            progressBar.value = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
+        });
+
+        audioPlayer.addEventListener('loadedmetadata', () => {
+            durationEl.textContent = formatTime(audioPlayer.duration);
+        });
+
+        progressBar.addEventListener('change', (e) => {
+            audioPlayer.currentTime = (e.target.value / 100) * audioPlayer.duration;
+        });
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        audioPlayer.addEventListener('ended', () => {
+            nextTrack();
+            audioPlayer.play();
+        });
+
+        // Initialize app
+        async function initializeApp() {
+            try {
+                await IndexedDBInit();
+                const savedSongs = await loadSongsFromIndexedDB();
+                
+                // Add saved songs to playlist
+                if (savedSongs && savedSongs.length > 0) {
+                    playlist.push(...savedSongs);
+                }
+                
+                loadTrack(0);
+                updatePlaylistDisplay();
+            } catch (error) {
+                console.error('Error initializing app:', error);
+                loadTrack(0);
+                updatePlaylistDisplay();
+            }
+        }
+
+        initializeApp();
+    </script>
+</body>
+</html>
